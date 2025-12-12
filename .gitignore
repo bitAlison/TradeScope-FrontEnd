@@ -1,0 +1,13 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/TradeScope/TradeScope/obj
+/TradeScope/TradeScope.Domain/bin/Debug/net10.0
+/TradeScope/TradeScope.Domain/obj
+/TradeScope/TradeScope.Infrastructure/bin/Debug/net10.0
+/TradeScope/TradeScope.Infrastructure/obj
+/TradeScope/.vs/TradeScope.slnx/FileContentIndex
+/TradeScope/.vs/TradeScope.slnx/v18/.suo
+/TradeScope/.vs/TradeScope.slnx/v18/.suo
+/TradeScope/.vs/TradeScope.slnx/v18/DocumentLayout.backup.json
