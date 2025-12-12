@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TradeScope.Domain\TradeScope.Domain.csproj" />
+    <ProjectReference Include="..\TradeScope.Infrastructure\TradeScope.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

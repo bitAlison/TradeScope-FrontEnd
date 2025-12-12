@@ -2,6 +2,7 @@ using System.Globalization;
 using Microsoft.AspNetCore.Localization;
 
 using TradeScope.Domain.Services.Contracts;
+using TradeScope.Infrastructure.Repositories;
 using TradeScope.Localization;
 using TradeScope.Services;
 
@@ -17,6 +18,10 @@ builder.Services
 
 builder.Services.AddScoped<IRiskCalculator, RiskCalculator>();
 builder.Services.AddScoped<ITranslationService, SimpleTranslationService>();
+builder.Services.AddScoped<ITradeMetricsService, TradeMetricsService>();
+builder.Services.AddScoped<IOperationsService, OperationsService>();
+builder.Services.AddScoped<ISettingsService, SettingsService>();
+builder.Services.AddSingleton<ITradeStore, JsonTradeStore>();
 
 // Necessário para ler cultura do HttpContext
 builder.Services.AddHttpContextAccessor();

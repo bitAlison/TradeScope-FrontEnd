@@ -2,6 +2,7 @@
 
 using TradeScope.Domain.Models;
 using TradeScope.Domain.Services.Contracts;
+using Microsoft.Extensions.Hosting;
 
 namespace TradeScope.Infrastructure.Repositories
 {
@@ -15,7 +16,7 @@ namespace TradeScope.Infrastructure.Repositories
             PropertyNameCaseInsensitive = true
         };
 
-        public JsonTradeStore(IWebHostEnvironment env)
+        public JsonTradeStore(IHostEnvironment env)
         {
             // Use App_Data (created automatically if missing)
             var dir = Path.Combine(env.ContentRootPath, "App_Data");
