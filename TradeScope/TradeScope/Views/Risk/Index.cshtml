@@ -1,0 +1,79 @@
+﻿@model TradeScope.Domain.Models.RiskViewModel
+@inject TradeScope.Localization.ITranslationService T
+
+@{
+    ViewData["Title"] = T["RiskAndGrowth"];
+}
+
+<section class="ts-section">
+    <div class="ts-kpi-grid">
+        <div class="ts-card ts-card-kpi">
+            <div class="ts-card-header">
+                <span class="ts-card-title">@T["RiskCurrentCapital"]</span>
+            </div>
+            <div class="ts-card-body">
+                <div class="ts-kpi-value">@Model.Capital.ToString("C")</div>
+                <div class="ts-kpi-subtitle">@Model.PhaseLabel</div>
+            </div>
+        </div>
+
+        <div class="ts-card ts-card-kpi">
+            <div class="ts-card-header">
+                <span class="ts-card-title">@T["RiskPerTrade"]</span>
+            </div>
+            <div class="ts-card-body">
+                <div class="ts-kpi-value">@Model.RiskPerTradePercent.ToString("0.00")%</div>
+                <div class="ts-kpi-subtitle">@Model.RiskPerTradeAmount.ToString("C") @T["PerOperation"]</div>
+            </div>
+        </div>
+
+        <div class="ts-card ts-card-kpi">
+            <div class="ts-card-header">
+                <span class="ts-card-title">@T["MaxDailyRisk"]</span>
+            </div>
+            <div class="ts-card-body">
+                <div class="ts-kpi-value">@Model.MaxDailyRiskAmount.ToString("C")</div>
+                <div class="ts-kpi-subtitle">@Model.TradesPerDay @T["TradesLabel"]/@T["DayLabel"]</div>
+            </div>
+        </div>
+
+        <div class="ts-card ts-card-kpi">
+            <div class="ts-card-header">
+                <span class="ts-card-title">@T["ExpectedGrowth"]</span>
+            </div>
+            <div class="ts-card-body">
+                <div class="ts-kpi-value">
+                    @Model.ExpectedMonthlyGrowthPercent.ToString("0.0")%
+                </div>
+                <div class="ts-kpi-subtitle">
+                    @T["EvPerTradeLabel"] @Model.ExpectedEvPerTradePercent.ToString("0.00")% · @Model.TradesPerMonth @T["TradesLabel"]/@T["TabMonth"]
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ts-grid-2">
+        <div class="ts-card ts-card-chart">
+            <div class="ts-card-header">
+                <span class="ts-card-title">@T["GrowthSimulator"]</span>
+            </div>
+            <div class="ts-card-body ts-chart-placeholder">
+                <span>Espaço para gráfico/curva de projeção futura (futuro).</span>
+            </div>
+        </div>
+
+        <div class="ts-card">
+            <div class="ts-card-header">
+                <span class="ts-card-title">@T["RiskSummaryRules"]</span>
+            </div>
+            <div class="ts-card-body">
+                <ul class="ts-list">
+                    <li>@string.Format(T["RiskRuleFixed"], "0,50")/li>
+                    <li>@T["MaxPrefix"] @Model.TradesPerDay @T["TradesPerDayExposure"]</li>
+                    <li>@string.Format(T["RiskRuleMaxTrades"], "12")</li>
+                    <li>@T["RiskRulePhaseAdapt"]</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>

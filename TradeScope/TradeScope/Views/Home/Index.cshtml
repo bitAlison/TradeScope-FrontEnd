@@ -1,0 +1,180 @@
+﻿@model TradeScope.Domain.Models.DashboardViewModel
+@inject TradeScope.Localization.ITranslationService T
+
+@{
+    ViewData["Title"] = T["Dashboard"];
+}
+
+<section class="ts-section">
+    <!-- KPIs principais -->
+    <div class="ts-kpi-grid">
+        <div class="ts-card ts-card-kpi">
+            <div class="ts-card-header">
+                <span class="ts-card-title">@T["DailyResult"]</span>
+                <span class="ts-pill ts-pill-success">@T["Live"]</span>
+            </div>
+            <div class="ts-card-body">
+                <div class="ts-kpi-value">
+                    @Model.DailyPnL.ToString("C")
+                </div>
+                <div class="ts-kpi-subtitle">
+                    @Model.DailyReturnPercent.ToString("0.0")% @T["OverCapital"]
+                </div>
+            </div>
+            <div class="ts-card-footer">
+                <span class="ts-kpi-label">@T["DailyTarget"]</span>
+                <span class="ts-kpi-label-value">
+                    @Model.DailyTarget.ToString("C") · @Model.TradesToday/@Model.TradesToday @T["CompletedTrades"]
+                </span>
+            </div>
+        </div>
+
+        <div class="ts-card ts-card-kpi">
+            <div class="ts-card-header">
+                <span class="ts-card-title">@T["WinRateLabel"] (@T["TabWeek"])</span>
+                <span class="ts-pill ts-pill-neutral">@T["Pattern10X"]</span>
+            </div>
+            <div class="ts-card-body">
+                <div class="ts-kpi-value">
+                    @Model.WeeklyWinRate.ToString("0.0")%
+                </div>
+                <div class="ts-kpi-subtitle">
+                    Padrão atual: @Model.CurrentPattern
+                </div>
+            </div>
+            <div class="ts-card-footer">
+                <span class="ts-kpi-label">@T["Last50Trades"]</span>
+                <span class="ts-kpi-label-value">
+                    @Model.WinsLast50 @T["GainsPlural"] · @Model.LossesLast50 @T["LossesPlural"]
+                </span>
+            </div>
+        </div>
+
+        <div class="ts-card ts-card-kpi">
+            <div class="ts-card-header">
+                <span class="ts-card-title">@T["RiskLabel"] @T["PerOperation"]</span>
+                <span class="ts-pill ts-pill-warning">@Model.PhaseLabel</span>
+            </div>
+            <div class="ts-card-body">
+                <div class="ts-kpi-value">
+                    @Model.RiskPerTradePercent.ToString("0.00")%
+                </div>
+                <div class="ts-kpi-subtitle">
+                    @Model.RiskPerTradeAmount.ToString("C") @T["PerTrade"]
+                </div>
+            </div>
+            <div class="ts-card-footer">
+                <span class="ts-kpi-label">@T["MaxDailyRisk"]</span>
+                <span class="ts-kpi-label-value">
+                    @Model.MaxDailyRisk.ToString("C") (@Model.MaxDailyTrades trades)
+                </span>
+            </div>
+        </div>
+
+        <div class="ts-card ts-card-kpi">
+            <div class="ts-card-header">
+                <span class="ts-card-title">@T["RiskCurrentCapital"]</span>
+            </div>
+            <div class="ts-card-body">
+                <div class="ts-kpi-value">
+                    @Model.CurrentCapital.ToString("C")
+                </div>
+                <div class="ts-kpi-subtitle">
+                    @T["GoalLabel"] @T["ExponentialGrowth"]
+                </div>
+            </div>
+            <div class="ts-card-footer">
+                <span class="ts-kpi-label">@T["TargetWithdrawal"]</span>
+                <span class="ts-kpi-label-value">
+                    @Model.MonthlyWithdrawalTarget.ToString("C") / @T["TabMonth"]
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Linha 2: gráfico + resumo por ativo -->
+    <div class="ts-grid-2">
+        <div class="ts-card ts-card-chart">
+            <div class="ts-card-header">
+                <span class="ts-card-title">@T["CapitalCurve"]</span>
+                <div class="ts-tabs">
+                    <button class="ts-tab ts-tab-active">@T["TabWeek"]</button>
+                    <button class="ts-tab">@T["TabMonth"]</button>
+                    <button class="ts-tab">@T["Tab90Days"]</button>
+                </div>
+            </div>
+            <div class="ts-card-body ts-chart-placeholder">
+                <span>Gráfico aqui (futuro). Por enquanto, placeholder visual.</span>
+            </div>
+        </div>
+
+        <div class="ts-card">
+            <div class="ts-card-header">
+                <span class="ts-card-title">@T["PerformanceByAsset"]</span>
+            </div>
+            <div class="ts-card-body">
+                @foreach (var asset in Model.Assets)
+                {
+                    <div class="ts-asset-row">
+                        <div class="ts-asset-info">
+                            <span class="ts-asset-name">@asset.Name</span>
+                            <span class="ts-asset-meta">Meta: @asset.Meta</span>
+                        </div>
+                        <div class="ts-asset-metrics">
+                            <span class="ts-badge @(asset.TotalPoints >= 0 ? "ts-badge-positive" : "ts-badge-negative")">
+                                @(asset.TotalPoints >= 0 ? "+" : "")@asset.TotalPoints pts
+                            </span>
+                            <span class="ts-asset-label">@T["WinRateLabel"]: @asset.WinRate.ToString("0")%</span>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <!-- Linha 3: tabela simples -->
+    <div class="ts-card ts-card-table">
+        <div class="ts-card-header">
+            <span class="ts-card-title">@T["LastTrades"]</span>
+            <span class="ts-card-subtitle">Mock de dados para layout inicial</span>
+        </div>
+        <div class="ts-card-body">
+            <table class="ts-table">
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>@T["AssetLabel"]</th>
+                        <th>@T["Phase"]</th>
+                        <th>@T["ContractsLabel"]</th>
+                        <th>@T["Result"]</th>
+                        <th>@T["Points"]</th>
+                        <th>@T["Pattern10X"]</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var op in Model.RecentOperations)
+                    {
+                        <tr>
+                            <td>@op.Date.ToString("dd/MM/yyyy")</td>
+                            <td>@op.Asset</td>
+                            <td>@op.Phase</td>
+                            <td>@op.Contracts</td>
+                            <td>
+                                @if (op.Result == TradeResult.Win)
+                                {
+                                    <span class="ts-badge ts-badge-positive">@T["Win"]</span>
+                                }
+                                else
+                                {
+                                    <span class="ts-badge ts-badge-negative">@T["Loss"]</span>
+                                }
+                            </td>
+                            <td>@(op.Points >= 0 ? "+" : "")@op.Points</td>
+                            <td>@op.Pattern10x</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

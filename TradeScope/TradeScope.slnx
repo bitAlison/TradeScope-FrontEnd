@@ -1,1 +1,5 @@
-<Solution />
+<Solution>
+  <Project Path="TradeScope.Domain/TradeScope.Domain.csproj" />
+  <Project Path="TradeScope.Infrastructure/TradeScope.Infrastructure.csproj" />
+  <Project Path="TradeScope/TradeScope.csproj" />
+</Solution>

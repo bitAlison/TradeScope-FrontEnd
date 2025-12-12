@@ -1,0 +1,58 @@
+﻿@model TradeScope.Domain.Models.AssetAnalyticsViewModel
+@inject TradeScope.Localization.ITranslationService T
+
+@{
+    ViewData["Title"] = @T["AssetAnalytics"];
+}
+
+<section class="ts-section">
+    <div class="ts-card">
+        <div class="ts-card-header">
+            <span class="ts-card-title">@T["Overview"]</span>
+        </div>
+        <div class="ts-card-body">
+            <p class="ts-text">
+                @T["BestAsset"] <strong>@Model.BestAssetName</strong><br />
+                @T["WorstAsset"] <strong>@Model.WorstAssetName</strong>
+            </p>
+        </div>
+    </div>
+
+    <div class="ts-card ts-card-table">
+        <div class="ts-card-header">
+            <span class="ts-card-title">@T["PerformanceByAsset"]</span>
+        </div>
+        <div class="ts-card-body">
+            <table class="ts-table">
+                <thead>
+                    <tr>
+                        <th>@T["Ativo"]</th>
+                        <th>@T["TargetLabel"]</th>
+                        <th>@T["PointsAccumulated"]</th>
+                        <th>@T["WinRateLabel"]</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var asset in Model.Assets)
+                    {
+                        <tr>
+                            <td>@asset.Name</td>
+                            <td>@asset.Meta</td>
+                            <td>@(asset.TotalPoints >= 0 ? "+" : "")@asset.TotalPoints pts</td>
+                            <td>@asset.WinRate.ToString("0")%</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="ts-card ts-card-chart">
+        <div class="ts-card-header">
+            <span class="ts-card-title">@T["ResultsDistribution"]</span>
+        </div>
+        <div class="ts-card-body ts-chart-placeholder">
+            <span>@T["FuturePrefix"]: @T["BarChart"] / @T["HeatmapByAssetAndTime"]</span>
+        </div>
+    </div>
+</section>

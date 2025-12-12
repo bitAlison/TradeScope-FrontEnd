@@ -1,0 +1,94 @@
+﻿@model TradeScope.Domain.Models.OperationsViewModel
+@inject TradeScope.Localization.ITranslationService T
+
+@{
+    ViewData["Title"] = T["TradeJournal"];
+}
+
+<section class="ts-section">
+    <div class="ts-card">
+        <div class="ts-card-header">
+            <span class="ts-card-title">@T["FilterOperationsTitle"]</span>
+        </div>
+        <div class="ts-card-body">
+            <form class="ts-filter-form">
+                <div class="ts-filter-row">
+                    <div class="ts-filter-field">
+                        <label>@T["FromSimple"]</label>
+                        <input type="date" value="@Model.From?.ToString("yyyy-MM-dd")" />
+                    </div>
+                    <div class="ts-filter-field">
+                        <label>@T["ToSimple"]</label>
+                        <input type="date" value="@Model.To?.ToString("yyyy-MM-dd")" />
+                    </div>
+                    <div class="ts-filter-field">
+                        <label>@T["AssetLabel"]</label>
+                        <select>
+                            <option value="">@T["FilterAll"]</option>
+                            <option>WIN</option>
+                            <option>WDO</option>
+                            <option>US100</option>
+                        </select>
+                    </div>
+                    <div class="ts-filter-field">
+                        <label>@T["Result"]</label>
+                        <select>
+                            <option value="">@T["FilterAll"]</option>
+                            <option>@T["Win"]</option>
+                            <option>@T["Loss"]</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="ts-filter-actions">
+                    <button type="submit" class="ts-chip ts-chip-outline">@T["ApplyFilter"]</button>
+                    <button type="button" class="ts-chip">@T["NewOperationFuture"]</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="ts-card ts-card-table">
+        <div class="ts-card-header">
+            <span class="ts-card-title">@T["RegisteredOperations"]</span>
+            <span class="ts-card-subtitle">@Model.Operations.Count operação(ões) mockadas</span>
+        </div>
+        <div class="ts-card-body">
+            <table class="ts-table">
+                <thead>
+                    <tr>
+                        <th>@T["DateLabel"]</th>
+                        <th>@T["Asset"]</th>
+                        <th>@T["Phase"]</th>
+                        <th>@T["ContractsLabel"]</th>
+                        <th>@T["Result"]</th>
+                        <th>@T["Points"]</th>
+                        <th>@T["Pattern10X"]</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var op in Model.Operations)
+                    {
+                        <tr>
+                            <td>@op.Date.ToString("dd/MM/yyyy")</td>
+                            <td>@op.Asset</td>
+                            <td>@op.Phase</td>
+                            <td>@op.Contracts</td>
+                            <td>
+                                @if (op.Result == TradeResult.Win)
+                                {
+                                    <span class="ts-badge ts-badge-positive">@T["Win"]</span>
+                                }
+                                else
+                                {
+                                    <span class="ts-badge ts-badge-negative">@T["Loss"]</span>
+                                }
+                            </td>
+                            <td>@(op.Points >= 0 ? "+" : "")@op.Points</td>
+                            <td>@op.Pattern10x</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
