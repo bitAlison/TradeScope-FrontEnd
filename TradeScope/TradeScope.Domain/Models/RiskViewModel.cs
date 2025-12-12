@@ -13,5 +13,6 @@
         public decimal ExpectedMonthlyGrowthAmount { get; set; }
 
         public string PhaseLabel { get; set; } = string.Empty;
+        public int TradesPerMonth { get; set; } = default!;
     }
 }

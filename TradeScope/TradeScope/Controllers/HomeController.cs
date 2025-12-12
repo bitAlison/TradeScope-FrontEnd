@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
 using TradeScope.Domain.Models;
+using TradeScope.Domain.Services.Contracts;
 
 namespace TradeScope.Controllers
 {

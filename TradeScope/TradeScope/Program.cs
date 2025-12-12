@@ -16,7 +16,6 @@ builder.Services
     .AddDataAnnotationsLocalization();
 
 builder.Services.AddScoped<IRiskCalculator, RiskCalculator>();
-builder.Services.AddSingleton<ISettingsService, InMemorySettingsService>();
 builder.Services.AddScoped<ITranslationService, SimpleTranslationService>();
 
 // Necessário para ler cultura do HttpContext
