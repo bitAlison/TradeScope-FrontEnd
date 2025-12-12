@@ -1,7 +1,5 @@
 ﻿@using System.Globalization
-@using Microsoft.AspNetCore.Mvc.Localization
 @inject TradeScope.Localization.ITranslationService T
-
 
 @{
     var appTitle = "TradeScope";
@@ -17,26 +15,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/tradescope.css" asp-append-version="true" />
 </head>
 <body class="ts-body">
-    <div class="ts-app-shell">
-        <!-- Sidebar -->
+    <div class="ts-shell">
         <aside class="ts-sidebar">
-            <div class="ts-brand">
-                <div class="ts-brand-icon">
-                    <span class="ts-brand-scope"></span>
-                </div>
-                <div class="ts-brand-text">
-                    <span class="ts-brand-title">TradeScope</span>
-                    <span class="ts-brand-subtitle">
-                        @T["TradeMonitoring"]
-                    </span>
+            <div class="ts-sidebar-brand">
+                <div class="ts-logo">TS</div>
+                <div>
+                    <div class="ts-brand-title">@appTitle</div>
+                    <div class="ts-brand-subtitle">@T["TradeMonitoring"]</div>
                 </div>
             </div>
 
             <nav class="ts-nav">
-                <a asp-controller="Home" asp-action="Index" class="ts-nav-item ts-nav-item-active">
-                    <span class="ts-nav-dot"></span>
+                <a asp-controller="Home" asp-action="Index" class="ts-nav-item">
                     @T["Dashboard"]
                 </a>
                 <a asp-controller="Operations" asp-action="Index" class="ts-nav-item">
@@ -52,49 +45,43 @@
                     @T["Settings"]
                 </a>
             </nav>
+
+            <div class="ts-sidebar-footer">
+                <span class="ts-sidebar-footer-title">@T["Mode"]</span>
+                <span class="ts-sidebar-footer-tag">@T["Phase1Aggressive"]</span>
+            </div>
         </aside>
 
-        <!-- Main -->
-        <div class="ts-main">
-            <!-- Topbar -->
+        <main class="ts-main">
             <header class="ts-topbar">
                 <div class="ts-topbar-left">
-                    <h1 class="ts-topbar-title">@ViewData["Title"]</h1>
-                    <span class="ts-topbar-subtitle">
-                        @T["GlobalSubtitle"]
-                    </span>
+                    <div class="ts-page-title">@ViewData["Title"]</div>
                 </div>
-                <div class="ts-topbar-right">
-                    <div class="ts-topbar-right">
-                        <form asp-controller="Localization" asp-action="SetLanguage" method="post" class="ts-lang-form">
-                            <input type="hidden" name="returnUrl" value="@Context.Request.Path" />
-                            <select name="culture" class="ts-lang-select" onchange="this.form.submit()">
-                                <option value="en" selected="@(currentCulture.TwoLetterISOLanguageName == "en")">English</option>
-                                <option value="pt" selected="@(currentCulture.TwoLetterISOLanguageName == "pt")">Português</option>
-                                <option value="es" selected="@(currentCulture.TwoLetterISOLanguageName == "es")">Español</option>
-                                <option value="zh" selected="@(currentCulture.TwoLetterISOLanguageName == "zh")">中文</option>
-                                <option value="hi" selected="@(currentCulture.TwoLetterISOLanguageName == "hi")">हिन्दी</option>
-                                <option value="ar" selected="@(currentCulture.TwoLetterISOLanguageName == "ar")">العربية</option>
-                                <option value="ru" selected="@(currentCulture.TwoLetterISOLanguageName == "ru")">Русский</option>
-                            </select>
-                        </form>
 
-                        <div class="ts-user">
-                            <div class="ts-user-avatar">AN</div>
-                            <div class="ts-user-info">
-                                <span class="ts-user-name">Alison Nunes</span>
-                                <span class="ts-user-role">Trader &amp; Quant</span>
-                            </div>
-                        </div>
-                    </div>
+                <div class="ts-topbar-right">
+                    <form asp-controller="Localization" asp-action="SetLanguage" method="post" class="ts-lang-form">
+                        <input type="hidden" name="returnUrl" value="@Context.Request.Path" />
+                        <select name="culture" class="ts-lang-select" onchange="this.form.submit()">
+                            <option value="en" selected="@(currentCulture.TwoLetterISOLanguageName == "en")">English</option>
+                            <option value="pt" selected="@(currentCulture.TwoLetterISOLanguageName == "pt")">Português</option>
+                            <option value="es" selected="@(currentCulture.TwoLetterISOLanguageName == "es")">Español</option>
+                            <option value="zh" selected="@(currentCulture.TwoLetterISOLanguageName == "zh")">中文</option>
+                            <option value="hi" selected="@(currentCulture.TwoLetterISOLanguageName == "hi")">हिन्दी</option>
+                            <option value="ar" selected="@(currentCulture.TwoLetterISOLanguageName == "ar")">العربية</option>
+                            <option value="ru" selected="@(currentCulture.TwoLetterISOLanguageName == "ru")">Русский</option>
+                        </select>
+                    </form>
                 </div>
             </header>
 
-            <!-- Content -->
-            <main class="ts-content">
+            <div class="ts-content">
                 @RenderBody()
-            </main>
-        </div>
+            </div>
+
+            <footer class="ts-footer">
+                <span>TradeScope © @DateTime.Now.Year</span>
+            </footer>
+        </main>
     </div>
 
     @RenderSection("Scripts", required: false)

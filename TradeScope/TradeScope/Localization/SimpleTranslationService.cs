@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Localization;
+﻿using System.Globalization;
 
-using System.Globalization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Localization;
 
 namespace TradeScope.Localization
 {
@@ -75,6 +76,17 @@ namespace TradeScope.Localization
                     ["ar"] = "الإعدادات",
                     ["ru"] = "Настройки"
                 },
+                ["Mode"] = new()
+                {
+                    ["en"] = "Mode",
+                    ["pt"] = "Modo",
+                    ["es"] = "Modo",
+                    ["zh"] = "模式",
+                    ["hi"] = "मोड",
+                    ["ar"] = "الوضع",
+                    ["ru"] = "Режим"
+                },
+
                 ["GlobalSubtitle"] = new()
                 {
                     ["en"] = "Clarity in every trade. Consistency in every result.",
@@ -580,6 +592,16 @@ namespace TradeScope.Localization
                     ["ru"] = "Вывод средств"
                 },
                 ["SaveFuture"] = new()
+                {
+                    ["en"] = "Save (future)",
+                    ["pt"] = "Salvar (futuro)",
+                    ["es"] = "Guardar (futuro)",
+                    ["zh"] = "保存（预留）",
+                    ["hi"] = "सेव (भविष्य)",
+                    ["ar"] = "حفظ (لاحقًا)",
+                    ["ru"] = "Сохранить (позже)"
+                },
+                ["ConcludedTrades"] = new()
                 {
                     ["en"] = "Save (future)",
                     ["pt"] = "Salvar (futuro)",
@@ -1190,28 +1212,6 @@ namespace TradeScope.Localization
                     ["ar"] = "للمحافظة على",
                     ["ru"] = "поддерживать"
                 },
-                ["RiskRuleFixed"] = new()
-                {
-                    ["en"] = "Fixed risk of {0}% per trade.",
-                    ["pt"] = "Risco fixo de {0}% por operação.",
-                    ["es"] = "Riesgo fijo de {0}% por operación.",
-                    ["zh"] = "每笔固定风险 {0}%。",
-                    ["hi"] = "प्रति ट्रेड {0}% निश्चित जोखिम।",
-                    ["ar"] = "مخاطر ثابتة قدرها {0}% لكل صفقة.",
-                    ["ru"] = "Фиксированный риск {0}% на сделку."
-                },
-
-                ["RiskRuleEvTarget"] = new()
-                {
-                    ["en"] = "Goal: keep EV/trade > {0}% on average.",
-                    ["pt"] = "Objetivo: manter EV/trade > {0}% em média.",
-                    ["es"] = "Objetivo: mantener EV/operación > {0}% en promedio.",
-                    ["zh"] = "目标：保持每笔 EV > {0}%（平均）。",
-                    ["hi"] = "लक्ष्य: औसतन EV/ट्रेड > {0}% बनाए रखना।",
-                    ["ar"] = "الهدف: الحفاظ على EV/صفقة > {0}% في المتوسط.",
-                    ["ru"] = "Цель: поддерживать EV/сделку > {0}% в среднем."
-                },
-
             };
 
         public SimpleTranslationService(IHttpContextAccessor httpContextAccessor)
