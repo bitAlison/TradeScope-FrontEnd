@@ -641,6 +641,14 @@ html, body {
     margin-top: 0.25rem;
 }
 
+.ts-settings-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin: 1rem 0.5rem 0 0;
+    justify-content:flex-end;
+}
+
+
 .ts-lang-form {
     margin-right: 0.5rem;
 }
