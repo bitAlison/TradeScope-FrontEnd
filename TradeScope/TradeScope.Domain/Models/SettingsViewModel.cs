@@ -1,19 +1,33 @@
 ﻿namespace TradeScope.Domain.Models
 {
-    public class SettingsViewModel
+    /// <summary>
+    /// General Settings
+    /// </summary>
+    public sealed class SettingsViewModel
     {
-        public decimal InitialCapital { get; set; }
-        public double RiskPerTradePercent { get; set; }
-        public int Phase1TradesPerDay { get; set; }
-        public int Phase2TradesPerDay { get; set; }
-        public int Phase3TradesPerDay { get; set; }
+        /// <summary>
+        /// Initial Capital of investment
+        /// </summary>
+        public decimal InitialCapital { get; set; } = default!;
 
-        public int WinTargetPoints { get; set; }
-        public int DolarTargetPoints { get; set; }
-        public int NasdaqTargetPoints { get; set; }
+        /// <summary>
+        /// Cal os Risk Per Trade Percent (Initial Capital + Phase Trade + Asset Tagert Point)
+        /// </summary>
+        public double RiskPerTradePercent { get; set; } = default!;
 
-        public decimal Month2Withdrawal { get; set; }
-        public decimal WithdrawalIncrement { get; set; }
-        public decimal MaxWithdrawal { get; set; }
+        /// <summary>
+        /// List of Phase Trade Settings
+        /// </summary>
+        public List<StrategyPhaseTradeSettings> StrategyPhaseTrade { get; set; } = default!;
+
+        /// <summary>
+        /// List of Point Targets of Assets
+        /// </summary>
+        public List<AssetTargetPointsSettings> AssetTargetPoint { get; set; } = default!;
+
+        /// <summary>
+        /// Withdrawl Settings
+        /// </summary>
+        public WithdrawlSettings Withdrawl { get; set; } = default!;
     }
 }

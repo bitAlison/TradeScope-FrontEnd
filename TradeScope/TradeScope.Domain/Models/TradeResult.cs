@@ -5,4 +5,17 @@
         Win,
         Loss
     }
+
+    public enum WithdrawlFrequency
+    {
+        StartAfterFirtsWeek,
+        StartAfterSecondWeek,
+        StartAfterThirdWeek,
+        StartAfterFirstMonth,
+        StartAfterSecondMonth,
+        StartAfterThirdMonth,
+        Daily,
+        Weekly,
+        Monthly
+    }
 }

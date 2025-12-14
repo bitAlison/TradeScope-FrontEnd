@@ -1,7 +1,6 @@
-﻿using System.Globalization;
+﻿using Microsoft.AspNetCore.Localization;
 
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Localization;
+using System.Globalization;
 
 namespace TradeScope.Localization
 {
@@ -480,16 +479,6 @@ namespace TradeScope.Localization
                     ["hi"] = "भविष्य: एसेट और समय के अनुसार बार/हीटमैप।",
                     ["ar"] = "لاحقًا: مخطط أعمدة / خريطة حرارية حسب الأصل والوقت.",
                     ["ru"] = "В будущем: столбчатая диаграмма / тепловая карта по активам и времени."
-                },
-                ["MainParameters"] = new()
-                {
-                    ["en"] = "Main parameters",
-                    ["pt"] = "Parâmetros principais",
-                    ["es"] = "Parámetros principales",
-                    ["zh"] = "主要参数",
-                    ["hi"] = "मुख्य पैरामीटर",
-                    ["ar"] = "المعلمات الرئيسية",
-                    ["ru"] = "Основные параметры"
                 },
                 ["MockNotice"] = new()
                 {
@@ -1212,6 +1201,127 @@ namespace TradeScope.Localization
                     ["ar"] = "للمحافظة على",
                     ["ru"] = "поддерживать"
                 },
+                ["PointsPerTrade"] = new()
+                {
+                    ["en"] = "Points per Trade",
+                    ["pt"] = "Pontos por Operação",
+                    ["es"] = "Puntos por Operación",
+                    ["zh"] = "每笔交易点数",
+                    ["hi"] = "प्रति ट्रेड अंक",
+                    ["ar"] = "النقاط لكل صفقة",
+                    ["ru"] = "Пункты за сделку"
+                },
+                ["TradesPerDay"] = new()
+                {
+                    ["en"] = "Trades per Day",
+                    ["pt"] = "Operações por Dia",
+                    ["es"] = "Operaciones por Día",
+                    ["zh"] = "每日交易次数",
+                    ["hi"] = "प्रति दिन ट्रेड",
+                    ["ar"] = "الصفقات في اليوم",
+                    ["ru"] = "Сделок в день"
+                },
+                ["TradesPerWeek"] = new()
+                {
+                    ["en"] = "Trades per Week",
+                    ["pt"] = "Operações por Semana",
+                    ["es"] = "Operaciones por Semana",
+                    ["zh"] = "每周交易次数",
+                    ["hi"] = "प्रति सप्ताह ट्रेड",
+                    ["ar"] = "الصفقات في الأسبوع",
+                    ["ru"] = "Сделок в неделю"
+                },
+                ["TradesPerMonth"] = new()
+                {
+                    ["en"] = "Trades per Month",
+                    ["pt"] = "Operações por Mês",
+                    ["es"] = "Operaciones por Mes",
+                    ["zh"] = "每月交易次数",
+                    ["hi"] = "प्रति माह ट्रेड",
+                    ["ar"] = "الصفقات في الشهر",
+                    ["ru"] = "Сделок в месяц"
+                },
+                ["PerWeek"] = new()
+                {
+                    ["en"] = "Per Week",
+                    ["pt"] = "Por Semana",
+                    ["es"] = "Por Semana",
+                    ["zh"] = "每周",
+                    ["hi"] = "प्रति सप्ताह",
+                    ["ar"] = "في الأسبوع",
+                    ["ru"] = "В неделю"
+                },
+                ["PerMonth"] = new()
+                {
+                    ["en"] = "Per Month",
+                    ["pt"] = "Por Mês",
+                    ["es"] = "Por Mes",
+                    ["zh"] = "每月",
+                    ["hi"] = "प्रति माह",
+                    ["ar"] = "في الشهر",
+                    ["ru"] = "В месяц"
+                },
+                ["IncrementPerWeek"] = new()
+                {
+                    ["en"] = "Increment per Week",
+                    ["pt"] = "Incremento por Semana",
+                    ["es"] = "Incremento por Semana",
+                    ["zh"] = "每周增量",
+                    ["hi"] = "प्रति सप्ताह वृद्धि",
+                    ["ar"] = "الزيادة الأسبوعية",
+                    ["ru"] = "Прирост в неделю"
+                },
+                ["IncrementPerMonth"] = new()
+                {
+                    ["en"] = "Increment per Month",
+                    ["pt"] = "Incremento por Mês",
+                    ["es"] = "Incremento por Mes",
+                    ["zh"] = "每月增量",
+                    ["hi"] = "प्रति माह वृद्धि",
+                    ["ar"] = "الزيادة الشهرية",
+                    ["ru"] = "Прирост в месяц"
+                },
+                ["MaxPerMonth"] = new()
+                {
+                    ["en"] = "Max per Month",
+                    ["pt"] = "Máx. por Mês",
+                    ["es"] = "Máx. por Mes",
+                    ["zh"] = "每月最大值",
+                    ["hi"] = "प्रति माह अधिकतम",
+                    ["ar"] = "الحد الأقصى في الشهر",
+                    ["ru"] = "Макс. в месяц"
+                },
+                ["Frequency"] = new()
+                {
+                    ["en"] = "Frequency",
+                    ["pt"] = "Frequência",
+                    ["es"] = "Frecuencia",
+                    ["zh"] = "频率",
+                    ["hi"] = "आवृत्ति",
+                    ["ar"] = "التكرار",
+                    ["ru"] = "Частота"
+                },
+                ["Name"] = new()
+                {
+                    ["en"] = "Name",
+                    ["pt"] = "Nome",
+                    ["es"] = "Nombre",
+                    ["zh"] = "名称",
+                    ["hi"] = "नाम",
+                    ["ar"] = "الاسم",
+                    ["ru"] = "Название"
+                },
+                ["Description"] = new()
+                {
+                    ["en"] = "Description",
+                    ["pt"] = "Descrição",
+                    ["es"] = "Descripción",
+                    ["zh"] = "描述",
+                    ["hi"] = "विवरण",
+                    ["ar"] = "الوصف",
+                    ["ru"] = "Описание"
+                }
+
             };
 
         public SimpleTranslationService(IHttpContextAccessor httpContextAccessor)

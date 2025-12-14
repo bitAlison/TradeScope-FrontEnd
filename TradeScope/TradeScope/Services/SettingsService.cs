@@ -7,17 +7,17 @@ namespace TradeScope.Services
     {
         public RiskParameters GetRiskParameters(string userId)
         {
-            throw new NotImplementedException();
+            return default!;
         }
 
         public SettingsViewModel GetSettings(string userId)
         {
-            throw new NotImplementedException();
+            return default!;
         }
 
         public void SaveSettings(string userId, SettingsViewModel settings)
         {
-            throw new NotImplementedException();
+            
         }
     }
 }

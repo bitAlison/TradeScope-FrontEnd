@@ -1,5 +1,6 @@
 ﻿@using System.Globalization
 @using Microsoft.AspNetCore.Mvc.Localization
+@using TradeScope.Helpers
 @inject TradeScope.Localization.ITranslationService T
 
 
@@ -15,7 +16,7 @@
     <meta charset="utf-8" />
     <title>@ViewData["Title"] - @appTitle</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 </head>
 <body class="ts-body">
@@ -35,23 +36,37 @@
             </div>
 
             <nav class="ts-nav">
-                <a asp-controller="Home" asp-action="Index" class="ts-nav-item ts-nav-item-active">
-                    <span class="ts-nav-dot"></span>
+                <a asp-controller="Home"
+                   asp-action="Index"
+                   class="ts-nav-item @Html.IsActive("Home","Index")">
                     @T["Dashboard"]
                 </a>
-                <a asp-controller="Operations" asp-action="Index" class="ts-nav-item">
+
+                <a asp-controller="Operations"
+                   asp-action="Index"
+                   class="ts-nav-item @Html.IsActive("Operations","Index")">
                     @T["TradeJournal"]
                 </a>
-                <a asp-controller="Risk" asp-action="Index" class="ts-nav-item">
+
+                <a asp-controller="Risk"
+                   asp-action="Index"
+                   class="ts-nav-item @Html.IsActive("Risk","Index")">
                     @T["RiskAndGrowth"]
                 </a>
-                <a asp-controller="Analytics" asp-action="Index" class="ts-nav-item">
+
+                <a asp-controller="Analytics"
+                   asp-action="Index"
+                   class="ts-nav-item @Html.IsActive("Analytics","Index")">
                     @T["AssetAnalytics"]
                 </a>
-                <a asp-controller="Settings" asp-action="Index" class="ts-nav-item">
+
+                <a asp-controller="Settings"
+                   asp-action="Index"
+                   class="ts-nav-item @Html.IsActive("Settings","Index")">
                     @T["Settings"]
                 </a>
             </nav>
+
         </aside>
 
         <!-- Main -->

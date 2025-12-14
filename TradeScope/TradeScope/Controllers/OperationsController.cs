@@ -25,6 +25,132 @@ namespace TradeScope.Controllers
                         Points = 10,
                         Contracts = 1,
                         Result = TradeResult.Win
+                    },
+                       new() {
+                        Date = DateTime.Now,
+                        Asset = "Sample Asset",
+                        Points = 10,
+                        Contracts = 1,
+                        Result = TradeResult.Win
+                    },
+                       new() {
+                        Date = DateTime.Now,
+                        Asset = "Sample Asset",
+                        Points = 10,
+                        Contracts = 1,
+                        Result = TradeResult.Win
+                    },
+                       new() {
+                        Date = DateTime.Now,
+                        Asset = "Sample Asset",
+                        Points = 10,
+                        Contracts = 1,
+                        Result = TradeResult.Win
+                    },
+                       new() {
+                        Date = DateTime.Now,
+                        Asset = "Sample Asset",
+                        Points = 10,
+                        Contracts = 1,
+                        Result = TradeResult.Win
+                    },
+                       new() {
+                        Date = DateTime.Now,
+                        Asset = "Sample Asset",
+                        Points = 10,
+                        Contracts = 1,
+                        Result = TradeResult.Win
+                    },
+                       new() {
+                        Date = DateTime.Now,
+                        Asset = "Sample Asset",
+                        Points = 10,
+                        Contracts = 1,
+                        Result = TradeResult.Win
+                    },
+                       new() {
+                        Date = DateTime.Now,
+                        Asset = "Sample Asset",
+                        Points = 10,
+                        Contracts = 1,
+                        Result = TradeResult.Win
+                    },
+                       new() {
+                        Date = DateTime.Now,
+                        Asset = "Sample Asset",
+                        Points = 10,
+                        Contracts = 1,
+                        Result = TradeResult.Win
+                    },
+                       new() {
+                        Date = DateTime.Now,
+                        Asset = "Sample Asset",
+                        Points = 10,
+                        Contracts = 1,
+                        Result = TradeResult.Win
+                    },
+                       new() {
+                        Date = DateTime.Now,
+                        Asset = "Sample Asset",
+                        Points = 10,
+                        Contracts = 1,
+                        Result = TradeResult.Win
+                    },
+                       new() {
+                        Date = DateTime.Now,
+                        Asset = "Sample Asset",
+                        Points = 10,
+                        Contracts = 1,
+                        Result = TradeResult.Win
+                    },
+                       new() {
+                        Date = DateTime.Now,
+                        Asset = "Sample Asset",
+                        Points = 10,
+                        Contracts = 1,
+                        Result = TradeResult.Win
+                    },
+                       new() {
+                        Date = DateTime.Now,
+                        Asset = "Sample Asset",
+                        Points = 10,
+                        Contracts = 1,
+                        Result = TradeResult.Win
+                    },
+                       new() {
+                        Date = DateTime.Now,
+                        Asset = "Sample Asset",
+                        Points = 10,
+                        Contracts = 1,
+                        Result = TradeResult.Win
+                    },
+                       new() {
+                        Date = DateTime.Now,
+                        Asset = "Sample Asset",
+                        Points = 10,
+                        Contracts = 1,
+                        Result = TradeResult.Win
+                    },
+                       new() {
+                        Date = DateTime.Now,
+                        Asset = "Sample Asset",
+                        Points = 10,
+                        Contracts = 1,
+                        Result = TradeResult.Win
+                    },
+                       new() {
+                        Date = DateTime.Now,
+                        Asset = "Sample Asset",
+                        Points = 10,
+                        Contracts = 1,
+                        Result = TradeResult.Win
+                    },
+                       new() {
+                        Date = DateTime.Now,
+                        Asset = "Sample Asset",
+                        Points = 10,
+                        Contracts = 1,
+                        Result = TradeResult.Win
                     }
                 ];
 
