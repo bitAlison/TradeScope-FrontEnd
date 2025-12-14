@@ -7,145 +7,147 @@
 
 
 <div class="view-form">
-    <section class="ts-section">
-        <div class="ts-settings-actions">
-            <button type="button" class="ts-chip ts-chip-outline">@T["SaveLabel"]</button>
-        </div>
-        <div class="ts-grid-2">
-            <div class="ts-card">
-                <div class="ts-card-header">
-                    <span class="ts-card-title">@T["CapitalAndRisk"]</span>
+    <form id="settingsForm" asp-action="Save" asp-controller="Settings" method="post">
+        <section class="ts-section">
+            <div class="ts-settings-actions">
+                <button id="btnSaveAssetTarget" type="button" class="ts-chip ts-chip-outline" disabled>@T["SaveLabel"]</button>
+            </div>
+            <div class="ts-grid-2">
+                <div class="ts-card">
+                    <div class="ts-card-header">
+                        <span class="ts-card-title">@T["CapitalAndRisk"]</span>
+                    </div>
+                    <div class="ts-card-body">
+                        <div class="ts-settings-grid">
+                            <div class="ts-settings-group">
+                                <div class="ts-filter-row">
+                                    <div class="ts-filter-field">
+                                        <label>@T["InitialCapital"]</label>
+                                        <input type="number" value="@Model.InitialCapital" />
+                                    </div>
+                                    <div class="ts-filter-field">
+                                        <label>@T["RiskPerTradePercentLabel"]</label>
+                                        <input type="number" step="0.01" value="@Model.RiskPerTradePercent" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="ts-card-body">
-                    <div class="ts-settings-grid">
+                <div class="ts-card">
+                    <div class="ts-card-header">
+                        <span class="ts-card-title">@T["Withdrawals"]</span>
+                    </div>
+                    <div class="ts-card-body">
                         <div class="ts-settings-group">
                             <div class="ts-filter-row">
                                 <div class="ts-filter-field">
-                                    <label>@T["InitialCapital"]</label>
-                                    <input type="number" value="@Model.InitialCapital" />
+                                    <label>@T["PerWeek"]</label>
+                                    <input class="ts-max-w-200" type="number" step="0.01" value="@Model.Withdrawl.EstimateWithdrawalPerWeek" />
                                 </div>
                                 <div class="ts-filter-field">
-                                    <label>@T["RiskPerTradePercentLabel"]</label>
-                                    <input type="number" step="0.01" value="@Model.RiskPerTradePercent" />
+                                    <label>@T["IncrementPerWeek"]</label>
+                                    <input class="ts-max-w-200" type="number" step="0.01" value="@Model.Withdrawl.EstimateIncrementWithdrawalPerWeek" />
+                                </div>
+                                <div class="ts-filter-field">
+                                    <label>@T["PerMonth"]</label>
+                                    <input class="ts-max-w-200" type="number" step="0.01" value="@Model.Withdrawl.EstimateWithdrawalPerMonth" />
+                                </div>
+                                <div class="ts-filter-field">
+                                    <label>@T["IncrementPerMonth"]</label>
+                                    <input class="ts-max-w-200" type="number" step="0.01" value="@Model.Withdrawl.EstimateIncrementWithdrawalPerMonth" />
+                                </div>
+                                <div class="ts-filter-field">
+                                    <label>@T["MaxPerMonth"]</label>
+                                    <input class="ts-max-w-200" type="number" step="0.01" value="@Model.Withdrawl.MaxWithdrawalPerMonth" />
+                                </div>
+                                <div class="ts-filter-field">
+                                    <label>@T["Frequency"]</label>
+                                    <input class="ts-max-w-200" type="text" value="@Model.Withdrawl.WithdrawlFrequency.ToString()" />
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="ts-card">
-                <div class="ts-card-header">
-                    <span class="ts-card-title">@T["Withdrawals"]</span>
+            <div class="ts-grid-2">
+                <div class="ts-card ts-card-table">
+                    <div class="ts-card-header">
+                        <span class="ts-card-title">@T["PointsTargets"]</span>
+                        <button type="button" id="btnAddAssetTarget" class="ts-chip ts-chip-outline" aria-haspopup="dialog" aria-controls="modalAssetTarget">
+                            <i class="bi bi-plus-lg"></i>
+                        </button>
+                    </div>
+                    <div class="ts-card-body">
+                        <table class="ts-table" id="tblAssetTargets">
+                            <thead>
+                                <tr>
+                                    <th class="ts-cell-left">#</th>
+                                    <th class="ts-cell-left">@T["Name"]</th>
+                                    <th class="ts-cell-left">@T["Description"]</th>
+                                    <th class="text-grid-center">@T["PointsPerTrade"]</th>
+                                </tr>
+                            </thead>
+                            <tbody style="overflow-y:scroll;">
+                                @{
+                                    if (Model.StrategyPhaseTrade.Any())
+                                    {
+                                        foreach (var item in Model.AssetTargetPoint)
+                                        {
+                                            <tr data-asset-id="@item.AssetId">
+                                                <td class="ts-cell-left">@item.AssetId </td>
+                                                <td class="ts-cell-left">@item.AssetName</td>
+                                                <td class="ts-cell-left">@item.AssetDescription</td>
+                                                <td class="text-grid-center">@item.TargetPointPerTrade</td>
+                                            </tr>
+                                        }
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-                <div class="ts-card-body">
-                    <div class="ts-settings-group">
-                        <div class="ts-filter-row">
-                            <div class="ts-filter-field">
-                                <label>@T["PerWeek"]</label>
-                                <input class="ts-max-w-200" type="number" step="0.01" value="@Model.Withdrawl.EstimateWithdrawalPerWeek" />
-                            </div>
-                            <div class="ts-filter-field">
-                                <label>@T["IncrementPerWeek"]</label>
-                                <input class="ts-max-w-200" type="number" step="0.01" value="@Model.Withdrawl.EstimateIncrementWithdrawalPerWeek" />
-                            </div>
-                            <div class="ts-filter-field">
-                                <label>@T["PerMonth"]</label>
-                                <input class="ts-max-w-200" type="number" step="0.01" value="@Model.Withdrawl.EstimateWithdrawalPerMonth" />
-                            </div>
-                            <div class="ts-filter-field">
-                                <label>@T["IncrementPerMonth"]</label>
-                                <input class="ts-max-w-200" type="number" step="0.01" value="@Model.Withdrawl.EstimateIncrementWithdrawalPerMonth" />
-                            </div>
-                            <div class="ts-filter-field">
-                                <label>@T["MaxPerMonth"]</label>
-                                <input class="ts-max-w-200" type="number" step="0.01" value="@Model.Withdrawl.MaxWithdrawalPerMonth" />
-                            </div>
-                            <div class="ts-filter-field">
-                                <label>@T["Frequency"]</label>
-                                <input class="ts-max-w-200" type="text" value="@Model.Withdrawl.WithdrawlFrequency.ToString()" />
-                            </div>
-                        </div>
+                <div class="ts-card ts-card-table">
+                    <div class="ts-card-header">
+                        <span class="ts-card-title">@T["TradesPerPhase"]</span>
+                        <button type="button" id="btnAddPhaseTrade" class="ts-chip ts-chip-outline" aria-haspopup="dialog" aria-controls="modalPhaseTrade">
+                            <i class="bi bi-plus-lg"></i>
+                        </button>
+                    </div>
+                    <div class="ts-card-body">
+                        <table class="ts-table" id="tblPhaseTrades">
+                            <thead>
+                                <tr>
+                                    <th class="ts-cell-left">#</th>
+                                    <th class="ts-cell-left">@T["Description"]</th>
+                                    <th class="text-grid-center">@T["MaxPrefix"] @T["TradesPerDay"]</th>
+                                    <th class="text-grid-center">@T["MaxPrefix"] @T["TradesPerWeek"]</th>
+                                    <th class="text-grid-center">@T["MaxPrefix"] @T["TradesPerMonth"]</th>
+                                </tr>
+                            </thead>
+                            <tbody style="overflow-y:scroll;">
+                                @{
+                                    if (Model.StrategyPhaseTrade.Any())
+                                    {
+                                        foreach (var item in Model.StrategyPhaseTrade)
+                                        {
+                                            <tr>
+                                                <td class="ts-cell-left">@item.StrategyNumber </td>
+                                                <td class="ts-cell-left">@item.StrategyDescription</td>
+                                                <td class="text-grid-center">@item.MaxTradesPerDay</td>
+                                                <td class="text-grid-center">@item.MaxTradesPerWeek</td>
+                                                <td class="text-grid-center">@item.MaxTradesPerMonth</td>
+                                            </tr>
+                                        }
+                                    }
+                                }
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="ts-grid-2">
-            <div class="ts-card ts-card-table">
-                <div class="ts-card-header">
-                    <span class="ts-card-title">@T["PointsTargets"]</span>
-                    <button type="button" id="btnAddAssetTarget" class="ts-chip ts-chip-outline" aria-haspopup="dialog" aria-controls="modalAssetTarget">
-                        <i class="bi bi-plus-lg"></i>
-                    </button>
-                </div>
-                <div class="ts-card-body">
-                    <table class="ts-table">
-                        <thead>
-                            <tr>
-                                <th class="ts-cell-left">#</th>
-                                <th class="ts-cell-left">@T["Name"]</th>
-                                <th class="ts-cell-left">@T["Description"]</th>
-                                <th class="text-grid-center">@T["PointsPerTrade"]</th>
-                            </tr>
-                        </thead>
-                        <tbody style="overflow-y:scroll;">
-                            @{
-                                if (Model.StrategyPhaseTrade.Any())
-                                {
-                                    foreach (var item in Model.AssetTargetPoint)
-                                    {
-                                        <tr>
-                                            <td class="ts-cell-left">@item.AssetId </td>
-                                            <td class="ts-cell-left">@item.AssetName</td>
-                                            <td class="ts-cell-left">@item.AssetDescription</td>
-                                            <td class="text-grid-center">@item.TargetPointPerTrade</td>
-                                        </tr>
-                                    }
-                                }
-                            }
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="ts-card ts-card-table">
-                <div class="ts-card-header">
-                    <span class="ts-card-title">@T["TradesPerPhase"]</span>
-                    <button type="button" id="btnAddPhaseTrade" class="ts-chip ts-chip-outline" aria-haspopup="dialog" aria-controls="modalPhaseTrade">
-                        <i class="bi bi-plus-lg"></i>
-                    </button>
-                </div>
-                <div class="ts-card-body">
-                    <table class="ts-table">
-                        <thead>
-                            <tr>
-                                <th class="ts-cell-left">#</th>
-                                <th class="ts-cell-left">@T["Description"]</th>
-                                <th class="text-grid-center">@T["MaxPrefix"] @T["TradesPerDay"]</th>
-                                <th class="text-grid-center">@T["MaxPrefix"] @T["TradesPerWeek"]</th>
-                                <th class="text-grid-center">@T["MaxPrefix"] @T["TradesPerMonth"]</th>
-                            </tr>
-                        </thead>
-                        <tbody style="overflow-y:scroll;">
-                            @{
-                                if (Model.StrategyPhaseTrade.Any())
-                                {
-                                    foreach (var item in Model.StrategyPhaseTrade)
-                                    {
-                                        <tr>
-                                            <td class="ts-cell-left">@item.StrategyNumber </td>
-                                            <td class="ts-cell-left">@item.StrategyDescription</td>
-                                            <td class="text-grid-center">@item.MaxTradesPerDay</td>
-                                            <td class="text-grid-center">@item.MaxTradesPerWeek</td>
-                                            <td class="text-grid-center">@item.MaxTradesPerMonth</td>
-                                        </tr>
-                                    }
-                                }
-                            }
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
+    </form>
 </div>
 
 
@@ -161,11 +163,12 @@
             <div class="ts-card-header">
                 <div>
                     <div class="ts-card-title" id="modalAssetTargetTitle">@T["PointsTargets"]</div>
-                  </div>
+                </div>
                 <button type="button" class="ts-chip ts-chip-outline" data-modal-close="modalAssetTarget" aria-label="Close">✕</button>
             </div>
             <div class="ts-card-body">
                 <div class="ts-settings-grid">
+                    <input type="hidden" id="assetId" />
                     <div class="ts-filter-field">
                         <label>@T["Name"]</label>
                         <input type="text" id="assetName" maxlength="64" />
@@ -202,6 +205,7 @@
             </div>
             <div class="ts-card-body">
                 <div class="ts-settings-grid">
+                    <input type="hidden" id="strategyNumber" />
                     <div class="ts-filter-field">
                         <label>@T["Description"]</label>
                         <input type="text" id="strategyDescription" maxlength="96" />
@@ -232,6 +236,52 @@
 
 <script>
     (function () {
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.querySelector('.view-form'); // container principal da sua view
+            const btnSave = document.getElementById('btnSaveAssetTarget');
+            if (!container || !btnSave) return;
+
+            const isTrackable = (el) => {
+                if (!el || el.disabled) return false;
+                // ignora coisas que não são do "model"
+                const type = (el.getAttribute('type') || '').toLowerCase();
+                if (type === 'hidden' || type === 'submit' || type === 'button') return false;
+                return true;
+            };
+
+            const getValue = (el) => {
+                const tag = el.tagName.toLowerCase();
+                const type = (el.getAttribute('type') || '').toLowerCase();
+
+                if (type === 'checkbox') return el.checked ? '1' : '0';
+                if (type === 'radio') return el.checked ? (el.value ?? 'on') : ''; // radios: só o marcado conta
+                if (tag === 'select') return el.value ?? '';
+                return (el.value ?? '').toString();
+            };
+
+            const snapshot = () => {
+                const fields = Array.from(container.querySelectorAll('input, select, textarea'))
+                    .filter(isTrackable);
+
+                // chave estável: name > id > índice no DOM
+                return fields
+                    .map((el, i) => `${el.name || el.id || `__idx${i}`}=${getValue(el)}`)
+                    .join('&');
+            };
+
+            const initial = snapshot();
+            btnSave.disabled = true;
+
+            const updateButtonState = () => {
+                btnSave.disabled = (snapshot() === initial);
+            };
+
+            // eventos delegados no container
+            container.addEventListener('input', updateButtonState, true);
+            container.addEventListener('change', updateButtonState, true);
+        });
+
         const $ = (sel, root) => (root || document).querySelector(sel);
         const $$ = (sel, root) => Array.from((root || document).querySelectorAll(sel));
 
@@ -272,8 +322,45 @@
         });
 
         // + buttons
-        $('#btnAddAssetTarget')?.addEventListener('click', () => modalOpen('modalAssetTarget'));
-        $('#btnAddPhaseTrade')?.addEventListener('click', () => modalOpen('modalPhaseTrade'));
+        const getNextAssetId = () => {
+            const items = getAssetTargetPoints(); // lê a grid atual (DOM)
+            const maxId = items.reduce((acc, x) => Math.max(acc, x.AssetId || 0), 0);
+            return maxId + 1;
+        };
+
+        const getNextStrategyNumber = () => {
+            const items = getPhaseTrades();
+            const maxId = items.reduce((acc, x) => Math.max(acc, x.StrategyNumber || 0), 0);
+            return maxId + 1;
+        };
+
+        // + buttons
+        $('#btnAddAssetTarget')?.addEventListener('click', () => {
+            const nextId = getNextAssetId();
+            const assetIdEl = $('#assetId');
+            if (assetIdEl) assetIdEl.value = String(nextId);
+
+            // limpa campos da modal (evita reaproveitar valores)
+            $('#assetName').value = '';
+            $('#assetDescription').value = '';
+            $('#targetPointPerTrade').value = '';
+
+            modalOpen('modalAssetTarget');
+        });
+
+        $('#btnAddPhaseTrade')?.addEventListener('click', () => {
+            const nextId = getNextStrategyNumber();
+            const el = $('#strategyNumber');
+            if (el) el.value = String(nextId);
+
+            $('#strategyDescription').value = '';
+            $('#maxTradesPerDay').value = '';
+            $('#maxTradesPerWeek').value = '';
+            $('#maxTradesPerMonth').value = '';
+
+            modalOpen('modalPhaseTrade');
+        });
+
 
         const parseIntSafe = (v) => {
             const n = parseInt(String(v ?? '').trim(), 10);

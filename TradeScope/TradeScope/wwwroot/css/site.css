@@ -770,3 +770,16 @@ html, body {
     .ts-chip-primary:hover {
         filter: brightness(1.05);
     }
+
+/* Botão desabilitado */
+button:disabled,
+.btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* Botão habilitado */
+button:not(:disabled),
+.btn:not(:disabled) {
+    cursor: pointer;
+}
