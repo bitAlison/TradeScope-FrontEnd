@@ -1,4 +1,6 @@
-﻿namespace TradeScope.Domain.Models
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+
+namespace TradeScope.Domain.Models
 {
     /// <summary>
     /// Withdrawl Settings
@@ -34,5 +36,10 @@
         /// Withdrawl Frequency
         /// </summary>
         public WithdrawlFrequency WithdrawlFrequency { get; set; } = default!;
+
+        /// <summary>
+        /// Withdrawl Frequency List Options
+        /// </summary>
+        public List<SelectListItem> WithdrawlFrequencyOptions { get; set; } = [];
     }
 }

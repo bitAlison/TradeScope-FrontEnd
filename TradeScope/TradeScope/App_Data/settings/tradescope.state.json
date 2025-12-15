@@ -1,0 +1,371 @@
+{
+  "InitialCapital": 20000,
+  "RiskPerTradePercent": 0.5,
+  "StrategyPhaseTrade": [
+    {
+      "StrategyNumber": 1,
+      "StrategyDescription": "Extreme",
+      "MaxTradesPerDay": 6,
+      "MaxTradesPerWeek": 30,
+      "MaxTradesPerMonth": 120
+    },
+    {
+      "StrategyNumber": 2,
+      "StrategyDescription": "Agressive",
+      "MaxTradesPerDay": 5,
+      "MaxTradesPerWeek": 25,
+      "MaxTradesPerMonth": 100
+    },
+    {
+      "StrategyNumber": 3,
+      "StrategyDescription": "Moderate",
+      "MaxTradesPerDay": 3,
+      "MaxTradesPerWeek": 15,
+      "MaxTradesPerMonth": 60
+    },
+    {
+      "StrategyNumber": 4,
+      "StrategyDescription": "Conservative",
+      "MaxTradesPerDay": 2,
+      "MaxTradesPerWeek": 10,
+      "MaxTradesPerMonth": 40
+    },
+    {
+      "StrategyNumber": 5,
+      "StrategyDescription": "Ultra Conservative",
+      "MaxTradesPerDay": 1,
+      "MaxTradesPerWeek": 5,
+      "MaxTradesPerMonth": 20
+    },
+    {
+      "StrategyNumber": 1,
+      "StrategyDescription": "Extreme",
+      "MaxTradesPerDay": 6,
+      "MaxTradesPerWeek": 30,
+      "MaxTradesPerMonth": 120
+    },
+    {
+      "StrategyNumber": 2,
+      "StrategyDescription": "Agressive",
+      "MaxTradesPerDay": 5,
+      "MaxTradesPerWeek": 25,
+      "MaxTradesPerMonth": 100
+    },
+    {
+      "StrategyNumber": 3,
+      "StrategyDescription": "Moderate",
+      "MaxTradesPerDay": 3,
+      "MaxTradesPerWeek": 15,
+      "MaxTradesPerMonth": 60
+    },
+    {
+      "StrategyNumber": 4,
+      "StrategyDescription": "Conservative",
+      "MaxTradesPerDay": 2,
+      "MaxTradesPerWeek": 10,
+      "MaxTradesPerMonth": 40
+    },
+    {
+      "StrategyNumber": 5,
+      "StrategyDescription": "Ultra Conservative",
+      "MaxTradesPerDay": 1,
+      "MaxTradesPerWeek": 5,
+      "MaxTradesPerMonth": 20
+    },
+    {
+      "StrategyNumber": 1,
+      "StrategyDescription": "Extreme",
+      "MaxTradesPerDay": 6,
+      "MaxTradesPerWeek": 30,
+      "MaxTradesPerMonth": 120
+    },
+    {
+      "StrategyNumber": 2,
+      "StrategyDescription": "Agressive",
+      "MaxTradesPerDay": 5,
+      "MaxTradesPerWeek": 25,
+      "MaxTradesPerMonth": 100
+    },
+    {
+      "StrategyNumber": 3,
+      "StrategyDescription": "Moderate",
+      "MaxTradesPerDay": 3,
+      "MaxTradesPerWeek": 15,
+      "MaxTradesPerMonth": 60
+    },
+    {
+      "StrategyNumber": 4,
+      "StrategyDescription": "Conservative",
+      "MaxTradesPerDay": 2,
+      "MaxTradesPerWeek": 10,
+      "MaxTradesPerMonth": 40
+    },
+    {
+      "StrategyNumber": 5,
+      "StrategyDescription": "Ultra Conservative",
+      "MaxTradesPerDay": 1,
+      "MaxTradesPerWeek": 5,
+      "MaxTradesPerMonth": 20
+    },
+    {
+      "StrategyNumber": 1,
+      "StrategyDescription": "Extreme",
+      "MaxTradesPerDay": 6,
+      "MaxTradesPerWeek": 30,
+      "MaxTradesPerMonth": 120
+    },
+    {
+      "StrategyNumber": 2,
+      "StrategyDescription": "Agressive",
+      "MaxTradesPerDay": 5,
+      "MaxTradesPerWeek": 25,
+      "MaxTradesPerMonth": 100
+    },
+    {
+      "StrategyNumber": 3,
+      "StrategyDescription": "Moderate",
+      "MaxTradesPerDay": 3,
+      "MaxTradesPerWeek": 15,
+      "MaxTradesPerMonth": 60
+    },
+    {
+      "StrategyNumber": 4,
+      "StrategyDescription": "Conservative",
+      "MaxTradesPerDay": 2,
+      "MaxTradesPerWeek": 10,
+      "MaxTradesPerMonth": 40
+    },
+    {
+      "StrategyNumber": 5,
+      "StrategyDescription": "Ultra Conservative",
+      "MaxTradesPerDay": 1,
+      "MaxTradesPerWeek": 5,
+      "MaxTradesPerMonth": 20
+    },
+    {
+      "StrategyNumber": 1,
+      "StrategyDescription": "Extreme",
+      "MaxTradesPerDay": 6,
+      "MaxTradesPerWeek": 30,
+      "MaxTradesPerMonth": 120
+    },
+    {
+      "StrategyNumber": 2,
+      "StrategyDescription": "Agressive",
+      "MaxTradesPerDay": 5,
+      "MaxTradesPerWeek": 25,
+      "MaxTradesPerMonth": 100
+    },
+    {
+      "StrategyNumber": 3,
+      "StrategyDescription": "Moderate",
+      "MaxTradesPerDay": 3,
+      "MaxTradesPerWeek": 15,
+      "MaxTradesPerMonth": 60
+    },
+    {
+      "StrategyNumber": 4,
+      "StrategyDescription": "Conservative",
+      "MaxTradesPerDay": 2,
+      "MaxTradesPerWeek": 10,
+      "MaxTradesPerMonth": 40
+    },
+    {
+      "StrategyNumber": 5,
+      "StrategyDescription": "Ultra Conservative",
+      "MaxTradesPerDay": 1,
+      "MaxTradesPerWeek": 5,
+      "MaxTradesPerMonth": 20
+    },
+    {
+      "StrategyNumber": 1,
+      "StrategyDescription": "Extreme",
+      "MaxTradesPerDay": 6,
+      "MaxTradesPerWeek": 30,
+      "MaxTradesPerMonth": 120
+    },
+    {
+      "StrategyNumber": 2,
+      "StrategyDescription": "Agressive",
+      "MaxTradesPerDay": 5,
+      "MaxTradesPerWeek": 25,
+      "MaxTradesPerMonth": 100
+    },
+    {
+      "StrategyNumber": 3,
+      "StrategyDescription": "Moderate",
+      "MaxTradesPerDay": 3,
+      "MaxTradesPerWeek": 15,
+      "MaxTradesPerMonth": 60
+    },
+    {
+      "StrategyNumber": 4,
+      "StrategyDescription": "Conservative",
+      "MaxTradesPerDay": 2,
+      "MaxTradesPerWeek": 10,
+      "MaxTradesPerMonth": 40
+    },
+    {
+      "StrategyNumber": 5,
+      "StrategyDescription": "Ultra Conservative",
+      "MaxTradesPerDay": 1,
+      "MaxTradesPerWeek": 5,
+      "MaxTradesPerMonth": 20
+    }
+  ],
+  "AssetTargetPoint": [
+    {
+      "AssetId": 1,
+      "AssetName": "Stocks",
+      "AssetDescription": "Equity Shares",
+      "TargetPointPerTrade": 10
+    },
+    {
+      "AssetId": 2,
+      "AssetName": "Forex",
+      "AssetDescription": "Foreign Exchange",
+      "TargetPointPerTrade": 15
+    },
+    {
+      "AssetId": 3,
+      "AssetName": "Commodities",
+      "AssetDescription": "Raw Materials",
+      "TargetPointPerTrade": 20
+    },
+    {
+      "AssetId": 4,
+      "AssetName": "Cryptocurrency",
+      "AssetDescription": "Digital Currency",
+      "TargetPointPerTrade": 25
+    },
+    {
+      "AssetId": 5,
+      "AssetName": "Indices",
+      "AssetDescription": "Market Indexes",
+      "TargetPointPerTrade": 30
+    },
+    {
+      "AssetId": 6,
+      "AssetName": "ETFs",
+      "AssetDescription": "Exchange Traded Funds",
+      "TargetPointPerTrade": 12
+    },
+    {
+      "AssetId": 1,
+      "AssetName": "Stocks",
+      "AssetDescription": "Equity Shares",
+      "TargetPointPerTrade": 10
+    },
+    {
+      "AssetId": 2,
+      "AssetName": "Forex",
+      "AssetDescription": "Foreign Exchange",
+      "TargetPointPerTrade": 15
+    },
+    {
+      "AssetId": 3,
+      "AssetName": "Commodities",
+      "AssetDescription": "Raw Materials",
+      "TargetPointPerTrade": 20
+    },
+    {
+      "AssetId": 4,
+      "AssetName": "Cryptocurrency",
+      "AssetDescription": "Digital Currency",
+      "TargetPointPerTrade": 25
+    },
+    {
+      "AssetId": 5,
+      "AssetName": "Indices",
+      "AssetDescription": "Market Indexes",
+      "TargetPointPerTrade": 30
+    },
+    {
+      "AssetId": 6,
+      "AssetName": "ETFs",
+      "AssetDescription": "Exchange Traded Funds",
+      "TargetPointPerTrade": 12
+    },
+    {
+      "AssetId": 1,
+      "AssetName": "Stocks",
+      "AssetDescription": "Equity Shares",
+      "TargetPointPerTrade": 10
+    },
+    {
+      "AssetId": 2,
+      "AssetName": "Forex",
+      "AssetDescription": "Foreign Exchange",
+      "TargetPointPerTrade": 15
+    },
+    {
+      "AssetId": 3,
+      "AssetName": "Commodities",
+      "AssetDescription": "Raw Materials",
+      "TargetPointPerTrade": 20
+    },
+    {
+      "AssetId": 4,
+      "AssetName": "Cryptocurrency",
+      "AssetDescription": "Digital Currency",
+      "TargetPointPerTrade": 25
+    },
+    {
+      "AssetId": 5,
+      "AssetName": "Indices",
+      "AssetDescription": "Market Indexes",
+      "TargetPointPerTrade": 30
+    },
+    {
+      "AssetId": 6,
+      "AssetName": "ETFs",
+      "AssetDescription": "Exchange Traded Funds",
+      "TargetPointPerTrade": 12
+    },
+    {
+      "AssetId": 1,
+      "AssetName": "Stocks",
+      "AssetDescription": "Equity Shares",
+      "TargetPointPerTrade": 10
+    },
+    {
+      "AssetId": 2,
+      "AssetName": "Forex",
+      "AssetDescription": "Foreign Exchange",
+      "TargetPointPerTrade": 15
+    },
+    {
+      "AssetId": 3,
+      "AssetName": "Commodities",
+      "AssetDescription": "Raw Materials",
+      "TargetPointPerTrade": 20
+    },
+    {
+      "AssetId": 4,
+      "AssetName": "Cryptocurrency",
+      "AssetDescription": "Digital Currency",
+      "TargetPointPerTrade": 25
+    },
+    {
+      "AssetId": 5,
+      "AssetName": "Indices",
+      "AssetDescription": "Market Indexes",
+      "TargetPointPerTrade": 30
+    },
+    {
+      "AssetId": 6,
+      "AssetName": "ETFs",
+      "AssetDescription": "Exchange Traded Funds",
+      "TargetPointPerTrade": 12
+    }
+  ],
+  "Withdrawl": {
+    "EstimateWithdrawalPerWeek": 500,
+    "EstimateIncrementWithdrawalPerWeek": 50,
+    "EstimateWithdrawalPerMonth": 2000,
+    "EstimateIncrementWithdrawalPerMonth": 200,
+    "MaxWithdrawalPerMonth": 5000,
+    "WithdrawlFrequency": "StartAfterFirstMonth",
+    "WithdrawlFrequencyOptions": []
+  }
+}

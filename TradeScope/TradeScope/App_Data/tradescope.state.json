@@ -1,16 +1,4 @@
 {
-  "Settings": {
-    "InitialCapital": 20000,
-    "RiskPerTradePercent": 1,
-    "Phase1TradesPerDay": 5,
-    "Phase2TradesPerDay": 4,
-    "Phase3TradesPerDay": 3,
-    "WinTargetPoints": 400,
-    "DolarTargetPoints": 14,
-    "NasdaqTargetPoints": 70,
-    "Month2Withdrawal": 1800,
-    "WithdrawalIncrement": 200,
-    "MaxWithdrawal": 3500
-  },
-  "Operations": []
+  "currentCapital": 20000,
+  "operations": []
 }

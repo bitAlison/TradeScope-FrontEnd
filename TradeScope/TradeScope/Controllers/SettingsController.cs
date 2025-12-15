@@ -1,13 +1,37 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
+using System.Text;
+using System.Text.Encodings.Web;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+
+using TradeScope.Domain.Extensions;
 using TradeScope.Domain.Models;
 
 namespace TradeScope.Controllers
 {
     public class SettingsController : Controller
     {
+        private readonly IWebHostEnvironment _env;
+
+        public SettingsController(IWebHostEnvironment env)
+        {
+            _env = env;
+        }
+
         public IActionResult Index()
         {
+            /*
+            var vm = new SettingsViewModel()
+            {
+                AssetTargetPoint = [],
+                StrategyPhaseTrade = [],
+                Withdrawl = new WithdrawlSettings()
+                {
+                    WithdrawlFrequencyOptions = SelectListHelper.GetEnumOptions<WithdrawlFrequency>()
+                }
+            };
+            /*/
             var vm = new SettingsViewModel
             {
                 InitialCapital = 20000m,
@@ -403,11 +427,76 @@ namespace TradeScope.Controllers
                     EstimateWithdrawalPerMonth = 2000m,
                     EstimateIncrementWithdrawalPerMonth = 200m,
                     MaxWithdrawalPerMonth = 5000m,
-                    WithdrawlFrequency = WithdrawlFrequency.StartAfterFirstMonth
+                    WithdrawlFrequency = WithdrawlFrequency.StartAfterFirstMonth,
+                    WithdrawlFrequencyOptions = SelectListHelper.GetEnumOptions<WithdrawlFrequency>()
+                }
+            };
+            //*/
+
+            return View(vm);
+        }
+
+        [HttpGet]
+        public IActionResult Save() => RedirectToAction("Index");
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Save(SettingsViewModel model, string? settingsJson)
+        {
+            // Se quiser forçar validação do Model:
+            if (!ModelState.IsValid)
+            {
+                ViewData["ReturnUrl"] = Url.Action("Index", "Settings");
+                model.Withdrawl.WithdrawlFrequencyOptions = SelectListHelper.GetEnumOptions<WithdrawlFrequency>();
+                return View("Index", model);
+            }
+
+            // Preferência: se o JS mandou o JSON, salva ele (espelha exatamente o que a tela montou).
+            // Caso contrário, serializa o model bindado.
+            string jsonToPersist;
+
+            if (!string.IsNullOrWhiteSpace(settingsJson))
+            {
+                // Valida se é JSON válido antes de salvar (evita salvar lixo)
+                using var _ = JsonDocument.Parse(settingsJson);
+                jsonToPersist = PrettyJson(settingsJson);
+            }
+            else
+            {
+                jsonToPersist = JsonSerializer.Serialize(model, JsonOptions());
+            }
+
+            var dir = Path.Combine(_env.ContentRootPath, "App_Data", "settings");
+            Directory.CreateDirectory(dir);
+
+            // Nome do arquivo: ajuste conforme sua regra (por usuário, por ambiente, etc.)
+            var filePath = Path.Combine(dir, "tradescope.state.json");
+
+            // Escrita atômica (evita arquivo corrompido em caso de crash)
+            var tmp = filePath + ".tmp";
+            System.IO.File.WriteAllText(tmp, jsonToPersist, new UTF8Encoding(encoderShouldEmitUTF8Identifier: false));
+            System.IO.File.Move(tmp, filePath, overwrite: true);
+
+            // Fluxo pós-save: redireciona para Index (ou retorne Ok/Json se for AJAX)
+            return RedirectToAction("Index");
+        }
+
+        private static JsonSerializerOptions JsonOptions() =>
+            new()
+            {
+                WriteIndented = true,
+                Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
+                PropertyNamingPolicy = null, // mantém nomes como no C# (InitialCapital, etc.)
+                Converters =
+                {
+                new JsonStringEnumConverter() // se tiver enums como WithdrawlFrequency
                 }
             };
 
-            return View(vm);
+        private static string PrettyJson(string rawJson)
+        {
+            using var doc = JsonDocument.Parse(rawJson);
+            return JsonSerializer.Serialize(doc.RootElement, JsonOptions());
         }
     }
 }
