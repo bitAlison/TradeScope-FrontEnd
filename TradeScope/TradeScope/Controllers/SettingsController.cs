@@ -7,6 +7,7 @@ using System.Text.Json.Serialization;
 
 using TradeScope.Domain.Extensions;
 using TradeScope.Domain.Models;
+using TradeScope.Helpers;
 
 namespace TradeScope.Controllers
 {
@@ -459,18 +460,18 @@ namespace TradeScope.Controllers
             {
                 // Valida se é JSON válido antes de salvar (evita salvar lixo)
                 using var _ = JsonDocument.Parse(settingsJson);
-                jsonToPersist = PrettyJson(settingsJson);
+                jsonToPersist = JsonHelpers.PrettyJson(settingsJson);
             }
             else
             {
-                jsonToPersist = JsonSerializer.Serialize(model, JsonOptions());
+                jsonToPersist = JsonSerializer.Serialize(model, JsonHelpers.JsonOptions());
             }
 
             var dir = Path.Combine(_env.ContentRootPath, "App_Data", "settings");
             Directory.CreateDirectory(dir);
 
             // Nome do arquivo: ajuste conforme sua regra (por usuário, por ambiente, etc.)
-            var filePath = Path.Combine(dir, "tradescope.state.json");
+            var filePath = Path.Combine(dir, "tradescope.settings.json");
 
             // Escrita atômica (evita arquivo corrompido em caso de crash)
             var tmp = filePath + ".tmp";
@@ -479,24 +480,6 @@ namespace TradeScope.Controllers
 
             // Fluxo pós-save: redireciona para Index (ou retorne Ok/Json se for AJAX)
             return RedirectToAction("Index");
-        }
-
-        private static JsonSerializerOptions JsonOptions() =>
-            new()
-            {
-                WriteIndented = true,
-                Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
-                PropertyNamingPolicy = null, // mantém nomes como no C# (InitialCapital, etc.)
-                Converters =
-                {
-                new JsonStringEnumConverter() // se tiver enums como WithdrawlFrequency
-                }
-            };
-
-        private static string PrettyJson(string rawJson)
-        {
-            using var doc = JsonDocument.Parse(rawJson);
-            return JsonSerializer.Serialize(doc.RootElement, JsonOptions());
         }
     }
 }

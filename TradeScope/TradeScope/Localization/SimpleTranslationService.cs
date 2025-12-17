@@ -1,9 +1,6 @@
 ﻿using Microsoft.AspNetCore.Localization;
-using Microsoft.AspNetCore.Mvc.Rendering;
 
 using System.Globalization;
-
-using TradeScope.Domain.Extensions;
 
 namespace TradeScope.Localization
 {

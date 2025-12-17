@@ -13,7 +13,7 @@
         <div class="ts-settings-actions">
             <button id="btnSaveAssetTarget" type="submit" class="ts-chip ts-chip-outline">@T["SaveLabel"]</button>
         </div>
-        <div class="ts-grid-2">
+        <div class="ts-grid-withdrawl">
             <div class="ts-card">
                 <div class="ts-card-header">
                     <span class="ts-card-title">@T["CapitalAndRisk"]</span>
@@ -21,15 +21,13 @@
                 <div class="ts-card-body">
                     <div class="ts-settings-grid">
                         <div class="ts-settings-group">
-                            <div class="ts-filter-row">
-                                <div class="ts-filter-field">
-                                    <label asp-for="InitialCapital">@T["InitialCapital"]</label>
-                                    <input asp-for="InitialCapital" type="number" />
-                                </div>
-                                <div class="ts-filter-field">
-                                    <label asp-for="RiskPerTradePercent">@T["RiskPerTradePercentLabel"]</label>
-                                    <input asp-for="RiskPerTradePercent" type="number" step="0.01" />
-                                </div>
+                            <div class="ts-filter-field">
+                                <label asp-for="InitialCapital">@T["InitialCapital"]</label>
+                                <input asp-for="InitialCapital" type="number" style="width: auto;overflow:hidden;" />
+                            </div>
+                            <div class="ts-filter-field">
+                                <label asp-for="RiskPerTradePercent">@T["RiskPerTradePercentLabel"]</label>
+                                <input asp-for="RiskPerTradePercent" type="number" step="0.01" style="width: auto;overflow:hidden;" />
                             </div>
                         </div>
                     </div>
@@ -42,26 +40,37 @@
                 <div class="ts-card-body">
                     <div class="ts-settings-group">
                         <div class="ts-filter-row">
-                            <div class="ts-filter-field">
-                                <label asp-for="Withdrawl.EstimateWithdrawalPerWeek">@T["PerWeek"]</label>
-                                <input asp-for="Withdrawl.EstimateWithdrawalPerWeek" class="ts-max-w-200" type="number" step="0.01" />
+                            <div class="ts-withdrwall-sections">
+                                <div class="ts-filter-field">
+                                    <label asp-for="Withdrawl.EstimateWithdrawalPerWeek">@T["PerWeek"]</label>
+                                    <input asp-for="Withdrawl.EstimateWithdrawalPerWeek" class="ts-max-w-200" type="number" step="0.01" />
+                                </div>
+                                <div class="ts-filter-field">
+                                    <label asp-for="Withdrawl.EstimateIncrementWithdrawalPerWeek">@T["IncrementPerWeek"]</label>
+                                    <input asp-for="Withdrawl.EstimateIncrementWithdrawalPerWeek" class="ts-max-w-200" type="number" step="0.01" />
+                                </div>
                             </div>
-                            <div class="ts-filter-field">
-                                <label asp-for="Withdrawl.EstimateIncrementWithdrawalPerWeek">@T["IncrementPerWeek"]</label>
-                                <input asp-for="Withdrawl.EstimateIncrementWithdrawalPerWeek" class="ts-max-w-200" type="number" step="0.01" />
+                            <div class="ts-withdrwall-sections">
+                                <div class="ts-filter-field">
+                                    <label asp-for="Withdrawl.EstimateWithdrawalPerMonth">@T["PerMonth"]</label>
+                                    <input asp-for="Withdrawl.EstimateWithdrawalPerMonth" class="ts-max-w-200" type="number" step="0.01" />
+                                </div>
+                                <div class="ts-filter-field">
+                                    <label asp-for="Withdrawl.EstimateIncrementWithdrawalPerMonth">@T["IncrementPerMonth"]</label>
+                                    <input asp-for="Withdrawl.EstimateIncrementWithdrawalPerMonth" class="ts-max-w-200" type="number" step="0.01" />
+                                </div>
                             </div>
-                            <div class="ts-filter-field">
-                                <label asp-for="Withdrawl.EstimateWithdrawalPerMonth">@T["PerMonth"]</label>
-                                <input asp-for="Withdrawl.EstimateWithdrawalPerMonth" class="ts-max-w-200" type="number" step="0.01" />
+                            <div class="ts-withdrwall-sections">
+                                <div class="ts-filter-field">
+                                    <label asp-for="Withdrawl.MaxWithdrawalPerMonth">@T["MaxPerMonth"]</label>
+                                    <input asp-for="Withdrawl.MaxWithdrawalPerMonth" class="ts-max-w-200" type="number" step="0.01" />
+                                </div>
+                                <div class="ts-filter-field">
+                                    <label asp-for="Withdrawl.MaxWithdrawalTotal">@T["MaxWithdrawlTotal"]</label>
+                                    <input asp-for="Withdrawl.MaxWithdrawalTotal" class="ts-max-w-200" type="number" step="0.01" />
+                                </div>
                             </div>
-                            <div class="ts-filter-field">
-                                <label asp-for="Withdrawl.EstimateIncrementWithdrawalPerMonth">@T["IncrementPerMonth"]</label>
-                                <input asp-for="Withdrawl.EstimateIncrementWithdrawalPerMonth" class="ts-max-w-200" type="number" step="0.01" />
-                            </div>
-                            <div class="ts-filter-field">
-                                <label asp-for="Withdrawl.MaxWithdrawalPerMonth">@T["MaxPerMonth"]</label>
-                                <input asp-for="Withdrawl.MaxWithdrawalPerMonth" class="ts-max-w-200" type="number" step="0.01" />
-                            </div>
+
                             <div class="ts-filter-field ts-filter-field-wide">
                                 <label asp-for="Withdrawl.WithdrawlFrequency">@T["Frequency"]</label>
                                 <select asp-for="Withdrawl.WithdrawlFrequency"

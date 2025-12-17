@@ -19,11 +19,10 @@ html, body {
         text-align: right;
     }
 
-.ts-form
-{
+.ts-form {
     flex-direction: column;
     min-height: 0;
-    flex:1;
+    flex: 1;
     display: flex;
 }
 /* BODY / BACKGROUND */
@@ -271,10 +270,13 @@ html, body {
     cursor: pointer;
 }
 
-.ts-chip-outline {
-    border: 1px solid #374151;
+.ts-chip, .ts-chip-outline {
     background-color: transparent;
     color: #E5E7EB;
+}
+
+.ts-chip-outline {
+    border: 1px solid #374151;
 }
 
 /* CONTENT */
@@ -283,7 +285,7 @@ html, body {
     padding: 1.75rem;
     min-height: 0;
     display: flex;
-    flex:1;
+    flex: 1;
 }
 
 /* SECTION */
@@ -292,7 +294,6 @@ html, body {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-    overflow: hidden;
     min-height: 0;
     flex: 1;
 }
@@ -331,6 +332,8 @@ html, body {
     font-size: 0.85rem;
     flex: 1;
     min-height: 0;
+    overflow: hidden;
+    padding: 3px;
 }
 
 .ts-card-footer {
@@ -387,6 +390,14 @@ html, body {
 .ts-grid-2 {
     display: grid;
     grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.8fr);
+    gap: 1rem;
+}
+
+/* GRID 2 */
+
+.ts-grid-withdrawl {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
     gap: 1rem;
 }
 
@@ -561,6 +572,14 @@ html, body {
 
     .ts-table thead {
         background-color: #020617;
+    }
+
+    .ts-table .ts-cell-min-w {
+        width: 5rem;
+    }
+
+    .ts-table .ts-cell-fill {
+        width: 100%;
     }
 
     .ts-table .ts-cell-left {
@@ -882,4 +901,53 @@ button:not(:disabled),
     flex: 1;
     min-height: 0;
     overflow: auto;
+}
+
+.ts-withdrwall-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+
+
+.dropdown-search {
+    position: relative;
+    max-width: 420px;
+}
+
+.results {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    margin: 6px 0 0;
+    padding: 0;
+    list-style: none;
+    border: 1px solid #d0d0d0;
+    border-radius: 8px;
+    background: #fff;
+    max-height: 240px;
+    overflow: auto;
+    display: none;
+    z-index: 1000;
+}
+
+    .results.open {
+        display: block;
+    }
+
+    .results li {
+        padding: 10px 12px;
+        cursor: pointer;
+    }
+
+        .results li[aria-selected="true"] {
+            background: #efefef;
+        }
+
+.muted {
+    color: #777;
+    font-size: 12px;
+    margin-left: 8px;
 }

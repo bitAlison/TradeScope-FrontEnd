@@ -45,6 +45,12 @@
                     @T["Dashboard"]
                 </a>
 
+                <a asp-controller="Asset"
+                   asp-action="Index"
+                   class="ts-nav-item @Html.IsActive("Asset","Index")">
+                    @T["AssetLabel"]
+                </a>
+
                 <a asp-controller="Operations"
                    asp-action="Index"
                    class="ts-nav-item @Html.IsActive("Operations","Index")">

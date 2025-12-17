@@ -18,6 +18,11 @@ namespace TradeScope.Domain.Models
         public decimal EstimateIncrementWithdrawalPerWeek { get; set; } = default!;
 
         /// <summary>
+        /// Max Withdrawal Per Week
+        /// </summary>
+        public decimal MaxWithdrawalPerWeek { get; set; } = default!;
+
+        /// <summary>
         /// Estimate Withdrawal Per Month
         /// </summary>
         public decimal EstimateWithdrawalPerMonth { get; set; } = default!;
@@ -31,6 +36,11 @@ namespace TradeScope.Domain.Models
         /// Max Withdrawal Per Month
         /// </summary>
         public decimal MaxWithdrawalPerMonth { get; set; } = default!;
+
+        /// <summary>
+        /// Max Withdrawal Total
+        /// </summary>
+        public decimal MaxWithdrawalTotal { get; set; } = default!;
 
         /// <summary>
         /// Withdrawl Frequency

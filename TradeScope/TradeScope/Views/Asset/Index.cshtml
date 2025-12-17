@@ -1,0 +1,278 @@
+﻿@model TradeScope.Domain.Models.AssetModel
+@inject TradeScope.Localization.ITranslationService T
+
+@{
+    ViewData["Title"] = T["AssetLabel"];
+}
+
+<form method="post" class="ts-form">
+    <section class="ts-section">
+
+        <div class="ts-settings-actions">
+            <button id="btnSaveAssetTarget" type="submit" class="ts-chip ts-chip-outline">@T["SaveLabel"]</button>
+        </div>
+                <div class="dropdown-search" id="cryptoSearch">
+                    <label for="searchInput">Buscar</label>
+                    <input id="searchInput"
+                           type="text"
+                           inputmode="search"
+                           autocomplete="off"
+                           placeholder="Digite para buscar..."
+                           aria-expanded="false"
+                           aria-controls="resultsList" />
+
+                    <ul id="resultsList" class="results" role="listbox" aria-label="Resultados"></ul>
+                </div>
+
+        <div class="ts-card">
+            <div class="ts-card-header">
+                <div>
+                    <div class="ts-card-title" id="modalAssetTargetTitle">Busca de Ativos</div>
+                </div>
+            </div>
+            <div class="ts-card-body">
+                <div class="ts-settings-grid">
+                    <div class="ts-filter-field">
+                        <div><strong>B3</strong></div>
+                        <div class="row">
+                            <input id="b3Input" list="b3List" placeholder="Digite PETR4, VALE3..." autocomplete="off" />
+                            <datalist id="b3List"></datalist>
+                            <button type="button" id="b3AddBtn" class="ts-chip ts-chip-outline">
+                                <i class="bi bi-plus-lg"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="ts-filter-field">
+                        <div><strong>Índices</strong></div>
+                        <div class="row">
+                            <input id="indicesInput" list="indicesList" placeholder="Digite ^DJI, ^SPX, ^NDQ..." autocomplete="off" />
+                            <datalist id="indicesList"></datalist>
+                            <button type="button" id="indicesAddBtn" class="ts-chip ts-chip-outline">
+                                <i class="bi bi-plus-lg"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="ts-filter-field">
+                        <div><strong>Commodities</strong></div>
+                        <div class="row">
+                            <input id="commoditiesInput" list="commoditiesList" placeholder="Digite XAUUSD, XAGUSD, CL.F..." autocomplete="off" />
+                            <datalist id="commoditiesList"></datalist>
+                            <button type="button" id="commoditiesAddBtn" class="ts-chip ts-chip-outline">
+                                <i class="bi bi-plus-lg"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="ts-filter-field">
+                        <div><strong>Forex</strong></div>
+                        <div class="row">
+                            <input id="fxInput" list="fxList" placeholder="Digite USD, EUR..." autocomplete="off" />
+                            <datalist id="fxList"></datalist>
+                            <button type="button" id="fxAddBtn" class="ts-chip ts-chip-outline">
+                                <i class="bi bi-plus-lg"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="ts-filter-field">
+                        <div><strong>Cripto</strong></div>
+                        <div class="row">
+                            <input id="cryptoInput" list="cryptoList" placeholder="Digite bitcoin, ethereum..." autocomplete="off" />
+                            <datalist id="cryptoList"></datalist>
+                            <button type="button" id="cryptoAddBtn" class="ts-chip ts-chip-outline">
+                                <i class="bi bi-plus-lg"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="ts-card ts-card-table">
+            <input type="hidden" id="selectedAssetsJson" name="SelectedAssetsJson" value="[]" />
+            <div class="ts-card-header">
+                <span class="ts-card-title">Lista de ativos para operar</span>
+            </div>
+            <div class="ts-card-body">
+                <div class="ts-table-scroll">
+                    <table class="ts-table">
+                        <thead>
+                            <tr>
+                                <th class="ts-cell-left">Id</th>
+                                <th class="ts-cell-left">Type</th>
+                                <th class="ts-cell-left">Name</th>
+                                <th class="ts-cell-left">Source</th>
+                                <th class="ts-cell-center">Endpoint</th>
+                                <th class="text-grid-center ts-cell-min-w"></th>
+                            </tr>
+                        </thead>
+                        <tbody id="selectedTbody" class="ts-table-body">
+                            <tr>
+                                <td colspan="6" class="muted ts-cell-left">Nenhum ativo selecionado.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+</form>
+
+
+<script>
+    // 1) DADOS (exemplo)
+    const items = [
+        { id: 1, label: "São Paulo.USD", code: "SP.USD" },
+        { id: 2, label: "Ação-Preferencial", code: "ACAO.PN" },
+        { id: 3, label: "Crédito/Privado", code: "CRED.PRIV" },
+        { id: 4, label: "EURUSD", code: "EURUSD" },
+        { id: 5, label: "USD/BRL", code: "USD.BRL" },
+    ];
+
+    // 2) NORMALIZAÇÃO: remove acentos e qualquer coisa que não seja [a-z0-9]
+    function normalizeForSearch(value) {
+        return String(value ?? "")
+            .normalize("NFD")                    // separa acento do caractere
+            .replace(/[\u0300-\u036f]/g, "")     // remove acentos
+            .toLowerCase()
+            .replace(/[^a-z0-9]/g, "");          // mantém somente letras e números
+    }
+
+    // 3) INDEXAÇÃO (melhora performance e simplifica o filtro)
+    const indexedItems = items.map(x => ({
+        ...x,
+        _key: normalizeForSearch(`${x.label} ${x.code ?? ""}`)
+    }));
+
+    // 4) COMPONENTE
+    (function initDropdownSearch(rootId) {
+        const root = document.getElementById(rootId);
+        const input = root.querySelector("#searchInput");
+        const list = root.querySelector("#resultsList");
+
+        let open = false;
+        let activeIndex = -1;
+        let filtered = [];
+
+        function setOpen(nextOpen) {
+            open = nextOpen;
+            list.classList.toggle("open", open);
+            input.setAttribute("aria-expanded", String(open));
+            if (!open) {
+                activeIndex = -1;
+                render();
+            }
+        }
+
+        function render() {
+            list.innerHTML = "";
+
+            if (!open) return;
+
+            if (filtered.length === 0) {
+                const li = document.createElement("li");
+                li.textContent = "Nenhum resultado";
+                li.style.cursor = "default";
+                list.appendChild(li);
+                return;
+            }
+
+            filtered.forEach((item, idx) => {
+                const li = document.createElement("li");
+                li.setAttribute("role", "option");
+                li.setAttribute("aria-selected", String(idx === activeIndex));
+
+                li.innerHTML = `
+          <span>${item.label}</span>
+          ${item.code ? `<span class="muted">${item.code}</span>` : ""}
+        `;
+
+                li.addEventListener("mousedown", (e) => {
+                    // mousedown evita perder foco antes do click em alguns browsers
+                    e.preventDefault();
+                    select(item);
+                });
+
+                list.appendChild(li);
+            });
+        }
+
+        function updateFilter() {
+            const q = normalizeForSearch(input.value);
+
+            // Regra: se vazio, pode mostrar "top N" ou esconder.
+            if (!q) {
+                filtered = indexedItems.slice(0, 10);
+                activeIndex = -1;
+                setOpen(true);
+                render();
+                return;
+            }
+
+            filtered = indexedItems
+                .filter(x => x._key.includes(q))
+                .slice(0, 20);
+
+            activeIndex = filtered.length ? 0 : -1;
+            setOpen(true);
+            render();
+        }
+
+        function select(item) {
+            // o que você quer guardar no input? label ou code? ajuste aqui
+            input.value = item.label;
+            setOpen(false);
+
+            // callback opcional: evento customizado
+            root.dispatchEvent(new CustomEvent("itemSelected", { detail: item }));
+        }
+
+        input.addEventListener("input", updateFilter);
+
+        input.addEventListener("focus", () => {
+            updateFilter();
+        });
+
+        input.addEventListener("keydown", (e) => {
+            if (!open && (e.key === "ArrowDown" || e.key === "Enter")) {
+                updateFilter();
+                return;
+            }
+
+            if (!open) return;
+
+            if (e.key === "ArrowDown") {
+                e.preventDefault();
+                if (filtered.length) {
+                    activeIndex = Math.min(activeIndex + 1, filtered.length - 1);
+                    render();
+                }
+            } else if (e.key === "ArrowUp") {
+                e.preventDefault();
+                if (filtered.length) {
+                    activeIndex = Math.max(activeIndex - 1, 0);
+                    render();
+                }
+            } else if (e.key === "Enter") {
+                e.preventDefault();
+                if (activeIndex >= 0 && filtered[activeIndex]) {
+                    select(filtered[activeIndex]);
+                }
+            } else if (e.key === "Escape") {
+                e.preventDefault();
+                setOpen(false);
+            }
+        });
+
+        document.addEventListener("click", (e) => {
+            if (!root.contains(e.target)) setOpen(false);
+        });
+
+        // Exemplo de consumo do evento
+        root.addEventListener("itemSelected", (e) => {
+            console.log("Selecionado:", e.detail);
+        });
+    })("cryptoSearch");
+</script>

@@ -1,0 +1,128 @@
+{
+    "commodities": [
+        {
+            "symbol": "CL.F",
+            "name": "Petróleo WTI (Futuro)"
+        },
+        {
+            "symbol": "BRN.F",
+            "name": "Petróleo Brent (Futuro)"
+        },
+        {
+            "symbol": "NG.F",
+            "name": "Gás Natural (Futuro)"
+        },
+        {
+            "symbol": "RB.F",
+            "name": "Gasolina RBOB (Futuro)"
+        },
+        {
+            "symbol": "HO.F",
+            "name": "Heating Oil (Futuro)"
+        },
+        {
+            "symbol": "GC.F",
+            "name": "Ouro (Futuro)"
+        },
+        {
+            "symbol": "SI.F",
+            "name": "Prata (Futuro)"
+        },
+        {
+            "symbol": "PL.F",
+            "name": "Platina (Futuro)"
+        },
+        {
+            "symbol": "PA.F",
+            "name": "Paládio (Futuro)"
+        },
+        {
+            "symbol": "HG.F",
+            "name": "Cobre (Futuro)"
+        },
+        {
+            "symbol": "ALI.F",
+            "name": "Alumínio (Futuro)"
+        },
+        {
+            "symbol": "ZN.F",
+            "name": "Zinco (Futuro)"
+        },
+        {
+            "symbol": "NI.F",
+            "name": "Níquel (Futuro)"
+        },
+        {
+            "symbol": "ZC.F",
+            "name": "Milho (Futuro)"
+        },
+        {
+            "symbol": "ZW.F",
+            "name": "Trigo (Futuro)"
+        },
+        {
+            "symbol": "ZS.F",
+            "name": "Soja (Futuro)"
+        },
+        {
+            "symbol": "ZM.F",
+            "name": "Farelo de Soja (Futuro)"
+        },
+        {
+            "symbol": "ZL.F",
+            "name": "Óleo de Soja (Futuro)"
+        },
+        {
+            "symbol": "KC.F",
+            "name": "Café (Futuro)"
+        },
+        {
+            "symbol": "SB.F",
+            "name": "Açúcar (Futuro)"
+        },
+        {
+            "symbol": "CT.F",
+            "name": "Algodão (Futuro)"
+        },
+        {
+            "symbol": "OJ.F",
+            "name": "Suco de Laranja (Futuro)"
+        },
+        {
+            "symbol": "CC.F",
+            "name": "Cacau (Futuro)"
+        },
+        {
+            "symbol": "LE.F",
+            "name": "Gado Vivo (Futuro)"
+        },
+        {
+            "symbol": "HE.F",
+            "name": "Suíno Magro (Futuro)"
+        },
+        {
+            "symbol": "GF.F",
+            "name": "Gado de Engorda (Futuro)"
+        },
+        {
+            "symbol": "LBS.F",
+            "name": "Madeira (Futuro)"
+        },
+        {
+            "symbol": "XAUUSD",
+            "name": "Ouro Spot (XAU/USD)"
+        },
+        {
+            "symbol": "XAGUSD",
+            "name": "Prata Spot (XAG/USD)"
+        },
+        {
+            "symbol": "BCOUSD",
+            "name": "Brent Spot (proxy)"
+        },
+        {
+            "symbol": "WTIUSD",
+            "name": "WTI Spot (proxy)"
+        }
+    ]
+}

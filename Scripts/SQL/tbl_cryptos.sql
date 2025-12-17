@@ -1,0 +1,22 @@
+USE [tradescope]
+GO
+
+/****** Object:  Table [dbo].[tbl_crypto]    Script Date: 16/12/2025 03:48:50 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[tbl_cryptos](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[symbol] [varchar](50) NOT NULL,
+	[name] [varchar](255) NOT NULL,
+ CONSTRAINT [PK_tbl_cryptos] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
