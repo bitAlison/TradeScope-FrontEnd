@@ -14,4 +14,5 @@
 /TradeScope/.vs/TradeScope.slnx
 /TradeScope/TradeScope/bin/Debug/net10.0
 /TradeScope/.vs/ProjectEvaluation
-/TradeScope/.vs/TradeScope/CopilotIndices/18.0.955.22606
+/TradeScope/.vs/TradeScope/CopilotIndices
+/TradeScope/TradeScope/App_Data/asset/tradescope.asset.json
